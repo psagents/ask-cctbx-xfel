@@ -210,6 +210,24 @@ mp.wall_time = 60
 
 ---
 
+## Photon energy calibration
+
+`xfel.fee_calibration` (note: no `cctbx.` prefix) derives an energy-per-pixel calibration from
+FEE spectrometer notch scans — the CLI counterpart to the GUI's "Energy" page. Run it against the
+runs from an energy-scan, where a known narrow energy band ("notch") was removed from the beam
+for each run:
+
+```bash
+xfel.fee_calibration experiment=mfxl1013621 output_phil=fee_calib.phil max_events=1000
+```
+
+This writes a phil file with the fitted `spectrum_eV_per_pixel` / `spectrum_ev_offset` values,
+which get entered directly into the GUI's run-group "Spectrum calibration" fields (or the
+equivalent `format.cbf.filter`-adjacent XTC format params) — see
+[gui-workflow.md](gui-workflow.md#run-groups-within-trials).
+
+---
+
 ## S3DF Slurm submit pattern
 
 ```phil
@@ -247,3 +265,6 @@ cctbx.xfel.submit_job submit.phil
 | `cctbx.xfel.stripe_experiment raises Sorry` | Renamed executable | Use `cctbx.xfel.time_varying_refinement` instead |
 | Merge fails with MPI alltoall memory error | Too many reflections for available RAM | Increase `parallel.a2a` in merge phil |
 | Low CC½ after merge | Images from multiple isoforms mixed | Add unit cell filter (`filter.algorithm = unit_cell`) |
+| `xtc_process` errors on startup or finds no images | Wrong `input.address` for the actual detector alias | Cross-check against the `detnames` psana tool output for that experiment/run |
+| `xtc_process` processes 0 events, no error | `format.cbf.filter.required_present_codes` doesn't match any EVR code actually present on the run | Verify the run's real event codes before assuming a bug; drop the filter to confirm events flow, then re-add with correct codes |
+| GUI shows a run but processing can't find data | Run-group "Extra XTC format parameters" (which populate the `data.loc` file) don't match the DAQ alias, or `mode=psana2_idx` is missing for psana2 data | Check/regenerate `data.loc` for that run group; see [gui-workflow.md](gui-workflow.md#run-groups-within-trials) |

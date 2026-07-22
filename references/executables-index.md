@@ -64,6 +64,13 @@ Source code at:
 | `cctbx.xfel.plot_uc_cloud_from_experiments` | `xfel/command_line/` | Plot unit cell parameter cloud from experiment files |
 | `cctbx.xfel.powder_from_spots` | `xfel/command_line/` | Generate a powder pattern from strong spots |
 
+### Photon Energy Calibration
+
+| Executable | Source file | Description |
+|---|---|---|
+| `xfel.fee_calibration` | `xfel/command_line/fee_calibration.py` | Calibrate photon energy from FEE spectrometer notch scans (a known narrow energy band is removed from the beam; the notch position vs. pixel is used to fit energy-per-pixel). CLI counterpart to the GUI "Energy" page. Params: `experiment`, `output_phil` (write calibrated values as a phil file), `max_events`, `verbose`, plus notch-finding params from `serialtbx.util.energy_scan_notch_finder`. **Note the name has no `cctbx.` prefix** — unlike most other tools in this index. |
+| `xfel.FEE_average_plot` | `xfel/command_line/FEE_average_plot.py` | Plot averaged FEE spectrometer traces across events/runs. Diagnostic companion to `fee_calibration`. Also has no `cctbx.` prefix. |
+
 ### Specialist / Less Common
 
 | Executable | Source file | Description |
@@ -96,3 +103,4 @@ Source code at:
 | Job submission + workflow (submit_job, time_varying_refinement, xtc_dump) | [job-submission.md](job-submission.md) |
 | Analysis tools (weather, drift, filter_experiments_by_rmsd, etc.) | [analysis-tools.md](analysis-tools.md) |
 | LCLS SFX good defaults and recipes | [lcls-sfx-recipes.md](lcls-sfx-recipes.md) |
+| GUI workflow: remote access, Trial/Dataset/Task setup, `settings.phil` | [gui-workflow.md](gui-workflow.md) |

@@ -1,6 +1,6 @@
 ---
 name: ask-cctbx-xfel
-description: "Expert assistant for cctbx.xfel programs and parameters. Use when users ask about any cctbx.xfel.* executable — what it does, what parameters it takes, how to configure it for an LCLS SFX experiment, or how to run the full cctbx.xfel SFX pipeline (process → ensemble refinement → merge). Covers cctbx.xfel.merge (full phil), cctbx.xfel.xtc_process, cctbx.xfel.process, cctbx.xfel.submit_job, cctbx.xfel.time_varying_refinement, cctbx.xfel.detector_residuals, cctbx.xfel.mpi_integrate, and all other cctbx.xfel.* tools. Trigger on: cctbx.xfel, xfel.merge, xtc_process, time_varying_refinement, TDER, ensemble refinement, mpi_integrate, xfel submit_job, detector_residuals, cctbx SFX pipeline, merging.d_min, scaling.model, postrefinement, filter_experiments_by_rmsd, cctbx.xfel weather drift trumpet_plots."
+description: "Expert assistant for cctbx.xfel programs, parameters, and the cctbx.xfel GUI workflow. Use when users ask about any cctbx.xfel.* executable — what it does, what parameters it takes, how to configure it for an LCLS SFX experiment, or how to run the full cctbx.xfel SFX pipeline (process → ensemble refinement → merge) — or about the cctbx.xfel GUI itself (Trial/Dataset/Task setup, settings.phil, remote access, photon energy calibration). Covers cctbx.xfel.merge (full phil), cctbx.xfel.xtc_process, cctbx.xfel.process, cctbx.xfel.submit_job, cctbx.xfel.time_varying_refinement, cctbx.xfel.detector_residuals, cctbx.xfel.mpi_integrate, xfel.fee_calibration, and all other cctbx.xfel.* tools. Trigger on: cctbx.xfel, xfel.merge, xtc_process, time_varying_refinement, TDER, ensemble refinement, mpi_integrate, xfel submit_job, detector_residuals, cctbx SFX pipeline, merging.d_min, scaling.model, postrefinement, filter_experiments_by_rmsd, cctbx.xfel weather drift trumpet_plots, cctbx.xfel GUI, Trial Dataset Task, settings.phil, fee_calibration, photon energy calibration, evr_address, event code filtering."
 ---
 
 # Ask CCTBX XFEL
@@ -15,6 +15,8 @@ You answer questions about:
 - Common failure modes and how to fix them
 
 **Important scope boundary**: `cctbx.xfel.process` and `cctbx.xfel.xtc_process` are thin LCLS-specific wrappers around `dials.stills_process`. For the spotfinding, indexing, and integration parameters inside those programs, refer the user to the **ask-dials** skill. This skill covers only the LCLS-specific additions (XTC routing, hitfinding, psana parameters, database logging).
+
+This skill also covers the **cctbx.xfel GUI operational workflow** (Trial/Dataset/Task setup, `settings.phil`, remote access) in [gui-workflow.md](references/gui-workflow.md), sourced from the community handbook at https://lcls-mlcv.github.io/comp-xtal/. Deep interactive tooling — `dials.image_viewer` mechanics, raw MySQL database debugging — is still out of scope; point users to that handbook directly for those.
 
 ---
 
@@ -38,6 +40,7 @@ You answer questions about:
 | Job submission + workflow (submit_job, time_varying_refinement, xtc_dump) | [job-submission.md](references/job-submission.md) |
 | Analysis tools (weather, drift, filter_experiments_by_rmsd, recompute_mosaicity, etc.) | [analysis-tools.md](references/analysis-tools.md) |
 | LCLS SFX recipes, detector defaults, common failure modes | [lcls-sfx-recipes.md](references/lcls-sfx-recipes.md) |
+| GUI workflow: remote access, Trial/Dataset/Task setup, `settings.phil` | [gui-workflow.md](references/gui-workflow.md) |
 
 ---
 

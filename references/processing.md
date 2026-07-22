@@ -108,6 +108,23 @@ mpirun -n <N> cctbx.xfel.process params.phil filelist.txt
 | `format.cbf.rayonix.override_beam_x` | None | float | Override beam center X (pixels) |
 | `format.cbf.rayonix.override_beam_y` | None | float | Override beam center Y (pixels) |
 
+#### Event code filtering (XTC only)
+
+These live under `format.cbf.filter` and come from the underlying `dxtbx` `FormatXTC` reader
+(`dxtbx/src/dxtbx/format/FormatXTC.py`), not from `xtc_process.py` itself — they apply whenever
+`cctbx.xfel.xtc_process` reads XTC via this format class. Use them to keep or reject events based
+on EVR event codes (e.g. requiring a laser-on code for pump-probe experiments).
+
+| Parameter | Default | Type | Notes |
+|---|---|---|---|
+| `format.cbf.filter.evr_address` | `evr1` | str | Address for the EVR object storing event codes. Should be `evr0`, `evr1`, or `evr2` — verify which one carries codes for a given experiment. |
+| `format.cbf.filter.required_present_codes` | None | int (multiple) | Event codes that **must** be present to keep the event. |
+| `format.cbf.filter.required_absent_codes` | None | int (multiple) | Event codes that **must** be absent to keep the event. |
+
+If `required_present_codes` doesn't match any code actually present on a run, every event gets
+filtered out and `xtc_process` will appear to process 0 events — check the run's actual EVR
+codes before assuming a processing bug.
+
 #### output scope
 
 | Parameter | Default | Type | Notes |
