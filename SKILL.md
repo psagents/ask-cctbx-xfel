@@ -41,6 +41,7 @@ This skill also covers the **cctbx.xfel GUI operational workflow** (Trial/Datase
 | Analysis tools (weather, drift, filter_experiments_by_rmsd, recompute_mosaicity, etc.) | [analysis-tools.md](references/analysis-tools.md) |
 | LCLS SFX recipes, detector defaults, common failure modes | [lcls-sfx-recipes.md](references/lcls-sfx-recipes.md) |
 | GUI workflow: remote access, Trial/Dataset/Task setup, `settings.phil` | [gui-workflow.md](references/gui-workflow.md) |
+| Assessing a merge: reading the per-shell table, choosing d_min, comparing merges | [merge-assessment.md](references/merge-assessment.md) |
 
 ---
 
